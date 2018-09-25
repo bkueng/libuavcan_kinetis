@@ -89,7 +89,14 @@ void init()
 
     // Prioritize and Enable  IRQ
 
+#if 0
+    // This has to be off or uses the default priority
+    // Without the ability to point the vector
+    // Directly to this ISR this will reenter the
+    // exception_common and cause the interrupt
+    // Stack pointer to be reset
     up_prioritize_irq(TIMX_IRQn, NVIC_SYSH_HIGH_PRIORITY);
+#endif
     up_enable_irq(TIMX_IRQn);
 }
 
